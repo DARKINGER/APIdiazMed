@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="contenedor">
+        Chuck Norris Jokes Categories</h1>
+        <label for="Selector">Selecciona una categoría:</label>
+        <select id="Selector">
+        </select>
+    
+        <button id="btnObtener">Obtener Broma</button>
+    
+        <div id="ContenedorChiste">
+            <!-- Contenido de la broma (texto) -->
+        </div>
+    
+    </div>
+
+    <h1>
+    <script>
+        const Seccion = document.getElementById("Selector");
+        const getJokeButton = document.getElementById("btnObtener");
+        const ContenedorChiste = document.getElementById("ContenedorChiste");
+
+        // Obtener la lista de categorías y cargarlas en el select
+        fetch('https://api.chucknorris.io/jokes/categories')
+            .then(response => response.json())
+            .then(categories => {
+                categories.forEach(categoria => {
+                    const optionElement = document.createElement("option");
+                    optionElement.value = categoria;
+                    optionElement.textContent = categoria;
+                    Seccion.appendChild(optionElement);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+        getJokeButton.addEventListener("click", () => {
+            const categoriaSeleccionada = Seccion.value;
+
+            // Obtener una broma de la categoría seleccionada
+            fetch(`https://api.chucknorris.io/jokes/random?category=${categoriaSeleccionada}`)
+                .then(response => response.json())
+                .then(data => {
+                    const joke = data.value;
+                    ContenedorChiste.textContent = joke;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+    <style>
+        #contenedor{
+            background: linear-gradient(white,aqua);
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #ContenedorChiste{
+            margin-top: 20px;
+        }
+
+        *{
+            font-size: 28px;
+        }
+
+        #Selector{
+            background-color: aliceblue;
+            border-radius: 5px;
+        }
+
+        #btnObtener{
+            background-color: aliceblue;
+            border-radius: 7px;
+        }
+    </style>
+
+</body>
+</html>
