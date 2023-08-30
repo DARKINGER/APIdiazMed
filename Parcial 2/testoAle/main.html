@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modulos</title>
+</head>
+<body>
+    <button type="button" id="btnmodulo">carga modulo</button>
+
+    <script type="module">
+
+        //import * as mod from "./index.js"
+        //console.log(mod.obtienefrase(0)); //modo sincrono 
+
+    document.getElementById('btnmodulo').addEventListener('click',async ()=>{
+        console.log(";;;;;;;;;;;;;;;;;;");
+                import("./index.js")
+                    .then(function(mod){
+                        console.log(mod.obtienefrase(0));
+                    })
+                });
+    </script>
+
+
+</body>
+</html>
