@@ -46,26 +46,14 @@
 
 
 const express = require('express');
-const morgan = require('morgan');
-const fs = require('fs');
-const path = require('path');
-
 const app = express();
-
-// create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
- 
-// setup the logger
-app.use(morgan('combined', { stream: accessLogStream }))
- 
-
 // app.use(express.json());
 app.get("/alumnos/:carrera", (req, res)=>{
     // console.log(req.params);
     // console.log(req, query);
     // console.log(req, body);
     // res.send("servidor express contestando a peticion get");
-    res.jsonp({respuesta:"contestando"})
+    res.jsonp({respuesta:"contestando a peticion get"});
 });
 app.post("/alumnos/:carrera", (req, resp)=>{
     resp.send("servidor express contestando a peticion post");
