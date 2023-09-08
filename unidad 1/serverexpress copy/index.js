@@ -16,11 +16,24 @@ app.get("/usuarios", async (req, res)=> {
         const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos');
         res.json(rows);
-    }catch{
-        res.json({mensaje:'Error de conexion'});
+    }catch(err){
+        // console.log(err);
+        res.status(500).json({mensaje:err.sqlMessage});
+        // res.json({mensaje:'Error de conexion'});
     }
 });
 
+app.get("/usuarios/error", async (req, res)=> {
+    try{
+        const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
+        const [rows, fields] = await conn.query('SELECT * FRO hola.alumnos');
+        res.json(rows);
+    }catch(err){
+        // console.log(err);
+        res.status(500).json({mensaje:err.sqlMessage});
+        // res.json({mensaje:'Error de conexion'});
+    }
+});
 
 app.get("/usuarios/:id", async(req, res)=> {
     const parametros = req.params.id
@@ -28,11 +41,14 @@ app.get("/usuarios/:id", async(req, res)=> {
     const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
     const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos WHERE id='+req.params.id);
     if(rows.length==0){
-        res.json({mensaje:'usuario no existe'});
+        // res.status(404);
+        res.status(404).json({mensaje:'usuario no existe'});
     }else{
         res.json(rows);
     }
 });
+
+
 
 app.listen(8085, ()=>{
     console.log("server express escuchando en el puerto 8085");
