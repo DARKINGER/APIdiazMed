@@ -59,7 +59,8 @@ app.delete("/usuarios", async(req, res)=> {
     try{
     const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
     const [rows, fields] = await conn.query(`delete FROM hola.alumnos WHERE id=+${req.query.id}`);
-    res.json(rows);
+    // res.json(rows);
+    res.json({message:"Se ha eliminado el usuario con id: "+ req.query.id})
     }catch(err){
         res.status(404).json({mensaje:err.sqlMessage})
     }
@@ -99,40 +100,75 @@ app.put("/usuarios/upload", async(req, res)=>{
         let sentencia = "UPDATE hola.alumnos SET "
         let sentencia2 = ""
         let where = "WHERE (id = "
+
+        let totCampos = 0;
+        let count = 1;
         
-        
+        campos.forEach(campo =>{
+            totCampos += 1
+        })
+
+        console.log(totCampos);
 
         campos.forEach(campo => {
         
             // console.log(campo)
-        
-            if(campo == "id"){
-        
-            for(i = 0; i<sentencia.length-2; i++ ) {
 
-            sentencia2+=sentencia[i]
-            }
-            // console.log(sentencia2)
-            where+=objetoA[campo]
-            // console.log('///////////////////'+where);
-            sentencia2 += " " + where +');'
-            console.log(sentencia2)
-            }
-            else{
-                if (campo == "nombre"){
+            if(count == 1 && campo == 'id'){
+                where+=objetoA[campo] + ");"
+                count += 1;
+            }else{
+
+                if (campo == "nombre" && count < totCampos)
+                {
                     sentencia += campo + ' = "' + objetoA[campo] + '", '
-                }else{
+                    count += 1;
+                }else if (campo == "nombre" && count < totCampos)
+                {
                     sentencia += campo + ' = ' + objetoA[campo]+', '
+                    count += 1;
+                }else
+                {
+                    if(campo == "nombre"){
+                        sentencia += campo + ' = "' + objetoA[campo]+'" '+where;
+                    }else{
+                        sentencia += campo + ' = ' + objetoA[campo]+' '+where;
+                    }
                 }
-                // console.log('funciona')
-            }
-        });
 
+                
+                // if(campo == "id"){
+            
+                // for(i = 0; i<sentencia.length-2; i++ ) {
+    
+                // sentencia2+=sentencia[i]
+                // }
+                // // console.log(sentencia2)
+                // where+=objetoA[campo]
+                // // console.log('///////////////////'+where);
+                // sentencia2 += " " + where +');'
+                // console.log(sentencia2)
+                // }
+                // else{
+                //     if (campo == "nombre"){
+                //         sentencia += campo + ' = "' + objetoA[campo] + '", '
+                //     }else{
+                //         sentencia += campo + ' = ' + objetoA[campo]+', '
+                //     }
+                //     // console.log('funciona')
+                // }
+
+            }
+        
+        });
+        console.log(sentencia);
+        // console.log('ya paso');
         // const [rows, fields] = await conn.query(`UPDATE hola.alumnos SET nombre = "${req.query.nombre}", 
         // Ncontrol = ${req.query.Ncontrol} WHERE id = ${req.query.id};`);
-        const [rows, fields] = await conn.query(sentencia2);
 
-        res.json(rows);
+        const [rows, fields] = await conn.query(sentencia);
+
+        // res.json(rows);
         res.json({message:"se han actualizado los datos"});
         }catch(err){
             res.json({mensaje:err.sqlMessage})
