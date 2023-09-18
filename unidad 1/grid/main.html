@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+-->
+<script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
+
+
+ <!-- Incluye la biblioteca Grid.js a través de una CDN -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridjs@1.0.0/dist/gridjs.css">
+<script src="https://cdn.jsdelivr.net/npm/gridjs@1.0.0/dist/gridjs.production.esm.min.js"></script> -->
+
+
+    <title>Document</title>
+</head>
+    <body>
+        <!-- <h1>
+            Grid.js + jQuery
+        </h1> -->
+        <div id="wrapper"></div>
+        
+        <script>
+            // const gred = new gridjs.Grid({
+            //     columnas:['id','nombre', 'Ncontrol'],
+            //     server:{
+            //         url:'http://localhost:8085/usuarios',
+            //         then: data=> data.map(usuario=>usuario.id, usuario.nombre, usuario.Ncontrol)
+            //     }
+            // }).render(document.getElementById("wrapper"));
+
+             // Función para cargar Grid.js después de que la página se haya cargado
+        document.addEventListener("DOMContentLoaded", function () {
+            // Crea una instancia de Grid.js
+            const grid = new gridjs.Grid({
+                columns: ['id', 'nombre', 'Ncontrol'],
+                server: {
+                    url: 'http://localhost:8085/usuarios',
+                    then: data => data.map(usuario => [usuario.id, usuario.nombre, usuario.Ncontrol])
+                }
+            }).render(document.getElementById("wrapper"));
+        });
+
+        </script>
+
+    </body>
+
+</html>
