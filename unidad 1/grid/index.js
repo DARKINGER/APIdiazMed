@@ -7,6 +7,9 @@ const path = require('path');
 const mysql = require('mysql2/promise');
 const { Stream } = require('stream');
 const app = express();
+const axios = require('axios');
+
+
 
 
 var accesLogStream = fs.createWriteStream(path.join(__dirname, 'acces.Log'), {flags: 'a'});
@@ -16,6 +19,43 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors());
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////Berer con acceso a github//////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// const bearerToken = require('express-bearer-token');
+// app.use(bearerToken());
+
+// // Middleware para verificar si se proporciona un token de portador válido
+// app.use((req, res, next) => {
+//     const token = req.token;
+
+//     if (!token) {
+//     return res.status(401).json({ error: 'Token de portador no proporcionado.' });
+//     }
+
+//     next(); // Continúa con la solicitud si el token es válido.
+// });
+
+//   // Ruta para obtener información del usuario de GitHub
+// app.get('/github', async (req, res) => {
+//     try {
+//     const token = req.token;
+//     const response = await axios.get('https://api.github.com/users/DARKINGER', {
+//         headers: {
+//         Authorization: `Bearer ${token}`,
+//         },
+//     });
+
+//     const userData = response.data;
+//     res.json(userData);
+//     } catch (error) {
+//     console.error('Error al obtener información del usuario de GitHub:', error);
+//     res.status(500).json({ error: 'Error al obtener información del usuario de GitHub.' });
+//     }
+// });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 app.get("/usuarios", async (req, res)=> {
