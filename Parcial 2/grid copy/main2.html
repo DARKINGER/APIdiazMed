@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+<br>
+    <form action="http://localhost:8085/usuarios" method="post" enctype="application/x-www-form-urlencoded">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre1" id="nombre1">
+        <label for="Ncontrol">NControl</label>
+        <input type="text" name="Ncontrol1" id="Ncontrol1">
+        <!-- <input type="button" value="enviar"> -->
+        <input type="submit" value="Enviar">
+    </form> 
+<br>
+<br>
+    <form action="http://localhost:8085/usuarios/multipart" method="post" enctype="multipart/form-data">
+        <!-- <input type="file" name="archivo"> -->
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+        <label for="Ncontrol">NControl</label>
+        <input type="text" name="Ncontrol" id="Ncontrol">
+        <input type="submit" value="Enviar">
+    </form>
+
+
+    <script>
+
+    </script>
+
+</body>
+</html>
