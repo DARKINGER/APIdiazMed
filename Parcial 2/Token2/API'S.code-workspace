@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../API nuevo orden"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "API nuevo orden"
+	}
+}

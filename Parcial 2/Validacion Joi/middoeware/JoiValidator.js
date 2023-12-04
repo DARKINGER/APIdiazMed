@@ -1,17 +1,8 @@
 
 
-
-const validation=(schema)=>{
-    let joiValidation = (req, res, next)=>{
-        let {error} = schema.validate(req.body,{abortEarly:false});
-        console.log(error);
-        if(error){
-            let{details}=error;
-            res.status(422).json({error:details});
-        }else{
-            next();
-        }
+const validation=(Schema)=>{
+    let joiValidation = (req, res, nex)=>{
+        let (error) = scheme.validate(req.body,(abo))
     }
-    return joiValidation;
-};
-module.exports = validation;
+}
+

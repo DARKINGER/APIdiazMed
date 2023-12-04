@@ -152,3 +152,4 @@
 ::ffff:127.0.0.1 - - [15/Sep/2023:13:53:07 +0000] "GET /usuarios HTTP/1.1" 200 350 "-" "Thunder Client (https://www.thunderclient.com)"
 ::ffff:127.0.0.1 - - [15/Sep/2023:13:53:16 +0000] "DELETE /usuarios?id=3 HTTP/1.1" 200 50 "-" "Thunder Client (https://www.thunderclient.com)"
 ::ffff:127.0.0.1 - - [15/Sep/2023:13:53:20 +0000] "GET /usuarios HTTP/1.1" 200 305 "-" "Thunder Client (https://www.thunderclient.com)"
+::1 - - [09/Nov/2023:14:36:24 +0000] "GET /api-docs/ HTTP/1.1" 404 148 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"

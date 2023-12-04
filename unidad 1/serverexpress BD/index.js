@@ -14,6 +14,7 @@ app.use(morgan('combined', {stream: accesLogStream}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+
 app.get("/usuarios", async (req, res)=> {
     try{
         const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
@@ -139,6 +140,7 @@ app.put("/usuarios/upload", async(req, res)=>{
         }
 })//UPDATE `hola`.`alumnos` SET `nombre` = 'jesus', `Ncontrol` = '158' WHERE (`id` = '10');
 //UPDATE `hola`.`alumnos` SET `nombre` = 'jesus' WHERE (`id` = '10');
+
 
 
 
